@@ -7,6 +7,7 @@ import { validateSignup } from "../../Utils/helper";
 import { registerUser } from "../../api/user";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { signupPicture } from "../../Utils/constants";
 
 function Signup() {
   const [bool, setBool] = useState(false);
@@ -206,7 +207,8 @@ function Signup() {
           <div className="md:block hidden w-1/2">
             <img
               className="rounded-2xl"
-              src="/images/signuppageimage.avif"
+              // src="/images/signuppageimage.avif"
+              src={signupPicture}
               alt="signupImage"
             />
           </div>

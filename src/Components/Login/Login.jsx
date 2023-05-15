@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux'
 import { setUserId } from "../../Store/features/userSlice";
+import { loginPicture } from "../../Utils/constants";
 function Login() {
   const [values, setValues] = useState({
     email: "",
@@ -227,7 +228,8 @@ function Login() {
           <div className="md:block hidden w-1/2">
             <img
               className="rounded-2xl"
-              src="/images/loginpageimage.avif"
+              // src="/images/loginpageimage.avif"
+              src={loginPicture}
               alt="loginImage"
             />
           </div>
