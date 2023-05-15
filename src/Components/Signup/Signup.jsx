@@ -52,10 +52,14 @@ function Signup() {
       };
       
         Axios.post(`auth/register`, 
-        {userData },
-        {
-          withCredentials: true,
-        }).then((data)=>{
+        userData ,
+       { 
+        headers: { "Content-Type": "application/json" }
+      }
+        // {
+        //   withCredentials: true,
+        // }
+        ).then((data)=>{
         navigate("/newlogin");
         toast.success("Signup successful!");
         })

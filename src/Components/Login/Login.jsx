@@ -35,13 +35,14 @@ function Login() {
       Axios
         .post(
           "auth/login",
-          {
-            ...values,
-          },
-          {withCredentials:true}
+          values ,
           // {
-          //   headers: { "Content-Type": "application/json" },
-          // }
+          //   ...values,
+          // },
+          // {withCredentials:true}
+          {
+            headers: { "Content-Type": "application/json" },
+          }
         )
         .then(({data}) => {
           const {accessToken,refreshToken,userId}=data;
