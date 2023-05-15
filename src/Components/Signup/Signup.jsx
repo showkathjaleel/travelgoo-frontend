@@ -51,7 +51,9 @@ function Signup() {
         phone: data.phone,
       };
       
-        Axios.post(`auth/register`, userData, {
+        Axios.post(`auth/register`, 
+        {userData },
+        {
           withCredentials: true,
         }).then((data)=>{
         navigate("/newlogin");

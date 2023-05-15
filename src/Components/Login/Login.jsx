@@ -38,9 +38,10 @@ function Login() {
           {
             ...values,
           },
-          {
-            headers: { "Content-Type": "application/json" },
-          }
+          {withCredentials:true}
+          // {
+          //   headers: { "Content-Type": "application/json" },
+          // }
         )
         .then(({data}) => {
           const {accessToken,refreshToken,userId}=data;
