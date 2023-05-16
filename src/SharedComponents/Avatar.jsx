@@ -19,7 +19,7 @@ function Avatar({ size, editable, url, onChange }) {
   let height = "h-12";
   if (size === "lg") {
     width = "w-32  md:w-32";
-    height = "w-40 md:w-40";
+    height = "h-32 md:h-32";
   }
 
   function handleClick() {
