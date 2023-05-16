@@ -356,11 +356,11 @@ function PostCard({ post, userId, socket }) {
           <Avatar url={user.ProfilePicture || defaultProfilePicture} />
         </div>
 
-        <div className="border grow rounded-full
-         relative inline-flex">
+        {/* <div className="border grow rounded-full
+         relative inline-flex"> */}
         {/* <div className="border grow rounded-full p-1"> */}
         <form onSubmit={handleCommentSubmit}>
-          {/* <div className="flex "> */}
+          <div className="flex ">
           <textarea
             className="block w-full  p-3 px-4  overflow-hidden h-12 rounded-full"
             value={commentText}
@@ -383,10 +383,10 @@ function PostCard({ post, userId, socket }) {
               />
             </svg>
           </button>
-          {/* </div> */}
+          </div>
         </form>
-        </div>
-        
+        {/* </div> */}
+
       </div>
 
       <div className="comments">

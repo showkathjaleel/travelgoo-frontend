@@ -2,8 +2,9 @@
 import axios from 'axios'
 
 
-//const baseURL = process.env.NODE_ENV === 'production' ? 'api/v1/' : 'http://localhost:5000/api/v1/'
- const baseURL = 'http://localhost:5000/api/v1/' 
+//const baseURL = process.env.NODE_ENV === 'production' ? 'https://travelgoo.site/' : 'http://localhost:5000/api/v1/'
+ //const baseURL = 'http://localhost:5000/api/v1/' 
+ const baseURL = 'https://travelgoo.site/api/v1/' 
 
   const Axios=axios.create({
     baseURL ,
