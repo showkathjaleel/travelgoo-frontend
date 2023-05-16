@@ -14,14 +14,14 @@ import TokenFetch from "../api/tokenFetch";
 import Swal from "sweetalert";
 import { defaultProfilePicture } from "../Utils/constants";
 
-function PostCard({ post,userId ,socket }) {
-   const {userAuth}=useContext(AuthUser)
+function PostCard({ post, userId, socket }) {
+  const { userAuth } = useContext(AuthUser);
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState("");
-  const token=TokenFetch()
+  const token = TokenFetch();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -29,78 +29,73 @@ function PostCard({ post,userId ,socket }) {
 
   const [isSaved, setIsSaved] = useState(false);
   //const [isDeleted, setIsDeleted] = useState(false);
-   // if(post.likes?.includes(userAuth._id)){
+  // if(post.likes?.includes(userAuth._id)){
   //   setIsLiked(true)
   // }
 
- 
   useEffect(() => {
     getUser();
   }, []);
 
-  const getUser=()=>{
-    fetchUser(post.userId).then((result)=>{
-      setUser(result)
-    })
-  }
-
+  const getUser = () => {
+    fetchUser(post.userId).then((result) => {
+      setUser(result);
+    });
+  };
 
   useEffect(() => {
     setIsLiked(post.likes.includes(userId));
   }, [userId, post.likes]);
 
-
   useEffect(() => {
-    getComments()
+    getComments();
   }, []);
-  
-  const getComments=()=>{
-    fetchComments(post._id,userAuth.accessToken).then((result)=>{
-      setComments(result)
-    })
-  }
 
-  const handleLike=()=>{
-    likeHandler(post._id,userId,token).then((result)=>{
+  const getComments = () => {
+    fetchComments(post._id, userAuth.accessToken).then((result) => {
+      setComments(result);
+    });
+  };
+
+  const handleLike = () => {
+    likeHandler(post._id, userId, token).then((result) => {
       setLike(isLiked ? like - 1 : like + 1);
       setIsLiked(!isLiked);
 
       socket.emit("sendNotification", {
         senderId: userId,
         recieverId: post.userId,
-        type:1
+        type: 1,
       });
-    })
-  }
+    });
+  };
 
- 
-  const  handleCommentSubmit= (e)=>{
+  const handleCommentSubmit = (e) => {
     e.preventDefault();
-    postComment( user._id, post._id,commentText).then((result)=>{
+    postComment(user._id, post._id, commentText).then((result) => {
       setComments([...comments, result]);
-      setCommentText("");    
-    })
-  }
+      setCommentText("");
+    });
+  };
 
- const postDeleteHandler=()=>{
-  postDelete(post._id, post.userId).then((response)=>{
-    console.log(response);
-  })
- }
-     
+  const postDeleteHandler = () => {
+    postDelete(post._id, post.userId).then((response) => {
+      console.log(response);
+    });
+  };
 
-  const savePostHandler=()=>{
-    savePost(post._id,userId).then((response)=>{
+  const savePostHandler = () => {
+    savePost(post._id, userId).then((response) => {
       setIsSaved(true);
-      setIsOpen(false)
-    })
-  }
+      setIsOpen(false);
+    });
+  };
 
-  const followHandler=async()=>{
-  const res= await followUser(post.userId,userId)
-  Swal(res)
-   getUser()
-  }
+  const followHandler = async () => {
+    const res = await followUser(post.userId, userId);
+    Swal(res);
+    getUser();
+  };
 
   return (
     <Card>
@@ -108,7 +103,7 @@ function PostCard({ post,userId ,socket }) {
         <div>
           <Link to="/profile">
             <span className="cursor-pointer">
-              <Avatar url={user?.ProfilePicture || defaultProfilePicture } />
+              <Avatar url={user?.ProfilePicture || defaultProfilePicture} />
             </span>
           </Link>
         </div>
@@ -133,17 +128,16 @@ function PostCard({ post,userId ,socket }) {
         </div>
 
         <div className="relative flex">
-{post.userId === userId ? (
-         <p></p>
-      ) : (
-        <button
-        onClick={followHandler}
-        className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
-      >
-
-        {user?.followers?.includes(userId) ? "following" : "follow"}
-      </button>
-      )}        
+          {post.userId === userId ? (
+            <p></p>
+          ) : (
+            <button
+              onClick={followHandler}
+              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
+            >
+              {user?.followers?.includes(userId) ? "following" : "follow"}
+            </button>
+          )}
           <button className="text-gray-400" onClick={toggleDropdown}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -202,10 +196,8 @@ function PostCard({ post,userId ,socket }) {
                     {isSaved ? "Remove from saved" : "Save post"}
                   </span>
                 </button>
-              
-                <span
-                  className="flex gap-3 py-2 my-2 hover:bg-socialBlue hover:text-white -mx-4 px-4 rounded-md transition-all hover:scale-110 hover:shadow-md shadow-gray-300"
-                >
+
+                <span className="flex gap-3 py-2 my-2 hover:bg-socialBlue hover:text-white -mx-4 px-4 rounded-md transition-all hover:scale-110 hover:shadow-md shadow-gray-300">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -223,9 +215,7 @@ function PostCard({ post,userId ,socket }) {
                   Turn notifications
                 </span>
 
-                <span
-                  className="flex gap-3 py-2 my-2 hover:bg-socialBlue hover:text-white -mx-4 px-4 rounded-md transition-all hover:scale-110 hover:shadow-md shadow-gray-300"
-                >
+                <span className="flex gap-3 py-2 my-2 hover:bg-socialBlue hover:text-white -mx-4 px-4 rounded-md transition-all hover:scale-110 hover:shadow-md shadow-gray-300">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -264,9 +254,7 @@ function PostCard({ post,userId ,socket }) {
                   Delete
                 </button>
 
-                <span
-                  className="flex gap-3 py-2 my-2 hover:bg-socialBlue hover:text-white -mx-4 px-4 rounded-md transition-all hover:scale-110 hover:shadow-md shadow-gray-300"
-                >
+                <span className="flex gap-3 py-2 my-2 hover:bg-socialBlue hover:text-white -mx-4 px-4 rounded-md transition-all hover:scale-110 hover:shadow-md shadow-gray-300">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -289,14 +277,12 @@ function PostCard({ post,userId ,socket }) {
         </div>
       </div>
 
-      <div >
+      <div>
         <p className="my-2 text-sm">{post.desc}</p>
 
         <div className="rounded-md overflow-hidden">
           {/* <Link to={`/profile?userId=${user._id}`}> */}
           <img
-         
-            // src="https://cdn.pixabay.com/photo/2018/02/02/13/37/nature-3125452_960_720.jpg" alt="" />
             src={
               post.img
                 ? post.img
@@ -367,42 +353,40 @@ function PostCard({ post,userId ,socket }) {
 
       <div className="flex mt-4 gap-3">
         <div>
-          <Avatar url={user.ProfilePicture || defaultProfilePicture }/>
+          <Avatar url={user.ProfilePicture || defaultProfilePicture} />
         </div>
 
         {/* <div className="border grow rounded-full
          relative inline-flex"> */}
-             <div className='border grow rounded-full p-1'>
-       
+        {/* <div className="border grow rounded-full p-1"> */}
         <form onSubmit={handleCommentSubmit}>
-     
-                    <textarea className='block w-full  p-3 px-4  overflow-hidden h-12 rounded-full'  value={commentText} onChange={(ev) => setCommentText(ev.target.value)} placeholder='Leave a comment'></textarea>
-                {/* </div> */}
-            {/* <input
-              value={commentText}
-              onChange={(ev) => setCommentText(ev.target.value)}
-              className="block w-full p-3 px-4 overflow-hidden h-12 rounded-full"
-              placeholder="Leave a comment"
-            /> */}
-            <button type="submit">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </button>
-          </form>
+          <div className="flex">
+          <textarea
+            className="block w-full  p-3 px-4  overflow-hidden h-12 rounded-full"
+            value={commentText}
+            onChange={(ev) => setCommentText(ev.target.value)}
+            placeholder="Leave a comment"
+          ></textarea>
+          <button type="submit">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </button>
+          </div>
+        </form>
 
-          <button className="absolute top-3 right-3 text-gray-400">
+          {/* <button className="absolute top-3 right-3 text-gray-400">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -417,8 +401,8 @@ function PostCard({ post,userId ,socket }) {
                 d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
               />
             </svg>
-          </button>
-        </div>
+          </button> */}
+        {/* </div> */}
       </div>
 
       <div className="comments">

@@ -11,6 +11,7 @@ import { updateUser } from "../api/user";
 import Header from "../SharedComponents/Header";
 import { useSelector } from "react-redux";
 import { defaultProfilePicture } from "../Utils/constants";
+
 export default function ProfilePage() {
   const location = useLocation();
   const currentUserId = useSelector((store) => store.user.userId);
@@ -59,7 +60,6 @@ export default function ProfilePage() {
             <div className="absolute top-24 left-4 z-20">
               {profile && (
                 <Avatar
-                  className="w-32 md:w-32 "
                   url={
                     profile.ProfilePicture
                       ? profile.ProfilePicture

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { fetchUser } from "../../api/user";
 import Avatar from "../../SharedComponents/Avatar";
 import "./Friends.css";
+import { defaultProfilePicture } from "../../Utils/constants";
 
 export default function Friends({ friend }) {
   const [friendDet, setFriendDet] = useState([]);
@@ -19,7 +20,7 @@ export default function Friends({ friend }) {
     // <div className="conversation">
     <div class="bg-white  shadow-gray-300 rounded-md mb-2 p-3 cursor-pointer flex">
       {friendDet && (
-        <Avatar url={friendDet.ProfilePicture || "images/images.jpeg"} />
+        <Avatar url={friendDet.ProfilePicture || defaultProfilePicture } />
       )}
 
       {friendDet && (
