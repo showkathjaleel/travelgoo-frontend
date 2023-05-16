@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import Card from "./Card";
 import Avatar from "./Avatar";
 import Dropzone from "react-dropzone";
 import { useEffect } from "react";
-import { AuthUser } from "../Context/AuthUser";
 import Preloader from "./Preloader";
-import { decodeUser, fetchUser } from "../api/user";
+import {  fetchUser } from "../api/user";
 import { createPost } from "../api/post";
 import { validateFileType } from "../Utils/helper";
+import { defaultProfilePicture } from "../Utils/constants";
 
 
 
@@ -85,7 +85,7 @@ const getUser=()=>{
       <div className="flex gap-1">
        
         <div>
-          <Avatar url={currentuser?.ProfilePicture || "images/images.jpeg"} />
+          <Avatar url={currentuser?.ProfilePicture || defaultProfilePicture } />
         </div>
 
         <textarea

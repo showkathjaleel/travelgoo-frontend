@@ -10,6 +10,7 @@ import useFetchUser from "../Utils/useFetchUser";
 import { initPayment } from "../Utils/useRazorpay";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert";
+import { defaultProfilePicture } from "../Utils/constants";
 // import { enrollToTrip } from "../api/trip";
 
 function TripDetails() {
@@ -82,7 +83,7 @@ function TripDetails() {
                 <div className="relative rounded-lg overflow-hidden">
                   <span className="cursor-pointer">
                     <Avatar
-                      url={host?.ProfilePicture || "images/images.jpeg"}
+                      url={host?.ProfilePicture || defaultProfilePicture }
                     />
                     hosted by {host?.username}
                   </span>
@@ -290,17 +291,18 @@ function TripMembers({ members }) {
   return (
     // <Card>
     <div className="member-list">
-      <span>
+      {/* <span> */}
+       < div className="pl-4">
         <Avatar
           url={
             memberDetails?.ProfilePicture
-              ? "images/images.jpeg"
-              : //  memberDetails.ProfilePicture
-                "images/images.jpeg"
+              ? memberDetails.ProfilePicture
+              : defaultProfilePicture                
           }
         />
         <p>{memberDetails?.username}</p>
-      </span>
+        </div>
+      {/* </span> */}
     </div>
   );
 }

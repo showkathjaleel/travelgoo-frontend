@@ -12,6 +12,7 @@ import { fetchUser, followUser } from "../api/user";
 import { fetchComments } from "../api/post";
 import TokenFetch from "../api/tokenFetch";
 import Swal from "sweetalert";
+import { defaultProfilePicture } from "../Utils/constants";
 
 function PostCard({ post,userId ,socket }) {
    const {userAuth}=useContext(AuthUser)
@@ -107,7 +108,7 @@ function PostCard({ post,userId ,socket }) {
         <div>
           <Link to="/profile">
             <span className="cursor-pointer">
-              <Avatar url={user?.ProfilePicture || "images/images.jpeg"} />
+              <Avatar url={user?.ProfilePicture || defaultProfilePicture } />
             </span>
           </Link>
         </div>
@@ -366,7 +367,7 @@ function PostCard({ post,userId ,socket }) {
 
       <div className="flex mt-4 gap-3">
         <div>
-          <Avatar url={user.ProfilePicture || "images/imgages.jpeg"}/>
+          <Avatar url={user.ProfilePicture || defaultProfilePicture }/>
         </div>
 
         {/* <div className="border grow rounded-full

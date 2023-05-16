@@ -1,9 +1,6 @@
 import React, { useContext ,useEffect,useState} from "react";
 import Card from "./Card";
-// import { useEffect, useState } from "react";
 import { Link , useLocation} from "react-router-dom";
-import axios from "axios";
-import { AuthUser } from "../Context/AuthUser";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 // import { socketNotification } from "../Context/NotificationContext";

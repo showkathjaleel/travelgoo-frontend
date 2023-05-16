@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Conversation.css";
+import { defaultProfilePicture } from "../../Utils/constants";
 
 function Conversation({ conversation, currentUserId }) {
   const [user, setUser] = useState(null); //this user means the  one who communicated with user
@@ -23,7 +24,7 @@ function Conversation({ conversation, currentUserId }) {
       {user && (
         <img
           className="conversationImg"
-          src={user.ProfilePicture ? user.ProfilePicture : "images/images.jpeg"}
+          src={user.ProfilePicture ? user.ProfilePicture : defaultProfilePicture }
           alt=""
         />
       )}

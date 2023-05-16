@@ -52,7 +52,6 @@ function Login() {
           navigate("/");
           toast.success('Login successful!');
         }).catch((err)=>{
-
           ((error) => {
             toast.error(error.response.data.msg, {
                 position: "top-center",

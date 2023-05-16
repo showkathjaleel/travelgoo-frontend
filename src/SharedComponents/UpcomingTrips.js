@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import useFetchUser from "../Utils/useFetchUser";
 import moment from "moment";
 import Card from "./Card";
+import { defaultProfilePicture } from "../Utils/constants";
 
 function Trip({ trips }) {
   const host = useFetchUser(trips?.hostId);
@@ -50,7 +51,7 @@ function Trip({ trips }) {
                 src={
                   host?.ProfilePicture
                     ? host?.ProfilePicture
-                    : "images/images.jpeg"
+                    : defaultProfilePicture
                 }
                 alt="Avatar of Jonathan Reinink"
               />
