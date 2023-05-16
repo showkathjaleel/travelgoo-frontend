@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import Axios from "../../Utils/Axios";
 import { Link } from "react-router-dom";
 import { validateSignup } from "../../Utils/helper";
-import { registerUser } from "../../api/user";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { signupPicture } from "../../Utils/constants";
