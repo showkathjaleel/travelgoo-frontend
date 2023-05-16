@@ -45,6 +45,7 @@ function Login() {
           }
         )
         .then(({data}) => {
+          console.log(data,'response after login')
           const {accessToken,refreshToken,userId}=data;
           document.cookie = `jwt=${accessToken}`;
           dispatch(setUserId(userId))
