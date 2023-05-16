@@ -58,7 +58,7 @@ export default function ProfilePage() {
               onChange={fetchUser}
             />
             <div className="absolute top-24 left-4 z-20">
-              {profile && (
+              {/* {profile && ( */}
                 <Avatar
                   url={
                     profile.ProfilePicture
@@ -69,7 +69,8 @@ export default function ProfilePage() {
                   editable={isMyUser}
                   onChange={fetchUser}
                 />
-              )}
+              )
+              {/* } */}
             </div>
             <div className="p-4 pt-0 md:pt-4 pb-0">
               <div className="ml-24 md:ml-40 flex justify-between">
