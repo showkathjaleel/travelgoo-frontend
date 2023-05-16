@@ -61,9 +61,7 @@ export default function ProfilePage() {
               {/* {profile && ( */}
                 <Avatar
                   url={
-                    profile.ProfilePicture
-                      ? profile.ProfilePicture
-                      : defaultProfilePicture
+                    profile.ProfilePicture || defaultProfilePicture
                   }
                   size={"lg"}
                   editable={isMyUser}

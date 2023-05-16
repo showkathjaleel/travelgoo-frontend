@@ -356,18 +356,18 @@ function PostCard({ post, userId, socket }) {
           <Avatar url={user.ProfilePicture || defaultProfilePicture} />
         </div>
 
-        {/* <div className="border grow rounded-full
-         relative inline-flex"> */}
+        <div className="border grow rounded-full
+         relative inline-flex">
         {/* <div className="border grow rounded-full p-1"> */}
         <form onSubmit={handleCommentSubmit}>
-          <div className="flex grid-flow-col">
+          {/* <div className="flex "> */}
           <textarea
-            className="block col-span-11  p-3 px-4  overflow-hidden h-12 rounded-full"
+            className="block w-full  p-3 px-4  overflow-hidden h-12 rounded-full"
             value={commentText}
             onChange={(ev) => setCommentText(ev.target.value)}
             placeholder="Leave a comment"
           ></textarea>
-          <button type="submit" className="col-span-1">
+          <button type="submit" >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -383,9 +383,10 @@ function PostCard({ post, userId, socket }) {
               />
             </svg>
           </button>
-          </div>
+          {/* </div> */}
         </form>
-
+        </div>
+        
       </div>
 
       <div className="comments">
